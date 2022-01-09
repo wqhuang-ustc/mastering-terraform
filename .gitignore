@@ -1,1 +1,3 @@
 .terraform/
+terraform-docker/terraform.tfstate
+terraform-docker/terraform.tfstate.backup
