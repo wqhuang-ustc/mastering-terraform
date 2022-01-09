@@ -1,3 +1,13 @@
 .terraform/
-terraform-docker/terraform.tfstate
-terraform-docker/terraform.tfstate.backup
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
