@@ -13,12 +13,27 @@ resource "docker_image" "nodered_image" {
   name = "nodered/node-red:latest"
 }
 
+resource "random_string" "random" {
+    length = 4
+    special = false
+    upper = false
+}
+
 resource "docker_container" "nodered_container" {
   name  = "nodered"
   image = docker_image.nodered_image.latest
   ports {
     internal = 1880
-    external = 1880
+    # external = 1880
+  }
+}
+
+resource "docker_container" "nodered_container2" {
+  name  = join("-", ["nodered", random_string.random.result])
+  image = docker_image.nodered_image.latest
+  ports {
+    internal = 1880
+    # external = 1880
   }
 }
 
@@ -30,4 +45,9 @@ output "IP-Address" {
 output "container-name" {
   value = docker_container.nodered_container.name
   description = "The name of the container"
+}
+
+output "container-name-2" {
+  value = docker_container.nodered_container2.name
+  description = "The name of the 2nd container"
 }
